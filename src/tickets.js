@@ -16,7 +16,7 @@ export default class Ticket {
   update() {
     if (detectCollision(this.game.ball, this)) {
       this.game.ball.speed.y = -this.game.ball.speed.y;
-
+      this.game.score++;
       this.markedForDeletion = true;
     }
   }

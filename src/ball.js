@@ -42,6 +42,7 @@ export default class Ball {
 
     if (this.position.y + this.size > this.gameHeight) {
       this.game.lives--;
+      this.game.score -= 10;
       this.reset();
     }
 

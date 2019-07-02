@@ -16,6 +16,7 @@ export default class Game {
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
     this.lives = 3;
+    this.score = 0;
 
     this.gamestate = GAMESTATE.MENU;
     this.ball = new Ball(this);
@@ -43,6 +44,7 @@ export default class Game {
   }
 
   update(deltatime) {
+    document.getElementById("currentScore").textContent = this.score;
     if (this.lives === 0) this.gamestate = GAMESTATE.GAMEOVER;
     if (
       this.gamestate === GAMESTATE.PAUSED ||
@@ -89,6 +91,17 @@ export default class Game {
         this.gameWidth / 2,
         this.gameHeight / 2
       );
+      ctx.font = "16px Arial";
+      ctx.fillText(
+        "Use the left and right arrow keys to move.",
+        this.gameWidth / 2,
+        this.gameHeight / 2 + 50
+      );
+      ctx.fillText(
+        "Press ESC to pause the game.",
+        this.gameWidth / 2,
+        this.gameHeight / 2 + 70
+      );
     }
 
     if (this.gamestate === GAMESTATE.GAMEOVER) {
@@ -100,6 +113,23 @@ export default class Game {
       ctx.fillStyle = "white";
       ctx.textAlign = "center";
       ctx.fillText("GAME OVER!!", this.gameWidth / 2, this.gameHeight / 2);
+    }
+
+    if (this.currentLevel >= 5) {
+      ctx.rect(0, 0, this.gameWidth, this.gameHeight);
+      ctx.fillStyle = "rgba(0,0,0,1)";
+      ctx.fill();
+
+      ctx.font = "30px Arial";
+      ctx.fillStyle = "white";
+      ctx.textAlign = "center";
+      ctx.fillText("YOU WIN!!", this.gameWidth / 2, this.gameHeight / 2);
+      ctx.font = "16px Arial";
+      ctx.fillText(
+        "Final Score: " + this.score,
+        this.gameWidth / 2,
+        this.gameHeight / 2 + 50
+      );
     }
   }
 
