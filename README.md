@@ -1,2 +1,0 @@
-# TicketDestroyerCaleb
-Created with CodeSandbox
